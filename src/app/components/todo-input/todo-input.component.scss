@@ -1,0 +1,21 @@
+form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+input {
+  display: flex;
+  flex: 1;
+  padding: 10px 15px;
+  appearance: none;
+  border: none;
+  background-color: #f3f3f3;
+  margin-top: 15px;
+  font-size: 20px;
+  outline: none;
+}
+
+button {
+  margin: 20px auto;
+}

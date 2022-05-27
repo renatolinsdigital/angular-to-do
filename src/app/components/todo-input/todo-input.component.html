@@ -1,0 +1,6 @@
+<form>
+  <input [(ngModel)]="todoText" type="text" name="todoText" placeholder="Enter todo...">
+  <button class="todo-submit" (click)="onAdd()">Add to do</button>
+</form>
+
+<!--Ps. By using ngForm, we can press enter on input and it will trigger button's action-->

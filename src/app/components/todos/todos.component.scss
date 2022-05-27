@@ -1,0 +1,33 @@
+.todo {
+  display: flex;
+  padding: 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:nth-child(even) {
+    background-color: #eee;
+  }
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  .id {
+    flex: 1 1 50px;
+  }
+
+  .content {
+    flex: 1 1 100%;
+  }
+
+  &.done .content {
+    text-decoration: line-through;
+  }
+
+  &:hover {
+    background-color: #e3f3ec;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="app">
+  <header>
+    <h1>To do List</h1>
+    <app-todo-input [todos]="todos" (addEvent)="onAdd($event)"></app-todo-input>
+    <app-todos [todos]="todos" (deleteEvent)="onDelete($event)" (toggleCompleteEvent)="onCompleteToggle($event)">
+    </app-todos>
+  </header>
+</div>
