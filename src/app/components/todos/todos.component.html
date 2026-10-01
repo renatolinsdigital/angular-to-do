@@ -1,7 +1,0 @@
-<div class="todos">
-  <div class="todo {{todo.isCompleted ? 'done': ''}}" *ngFor="let todo of todos;">
-    <div class="id">{{todo.id}}</div>
-    <div class="content" (click)="onCompleteToggle(todo.id)">{{todo.content}}</div>
-    <button class="delete" (click)="onDelete(todo.id)">Delete</button>
-  </div>
-</div>

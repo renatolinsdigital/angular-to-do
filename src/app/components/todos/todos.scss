@@ -1,10 +1,13 @@
+.todos {
+  list-style: none;
+}
+
 .todo {
   display: flex;
   padding: 15px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
   align-items: center;
-  cursor: pointer;
   transition: all 0.2s ease;
 
   &:nth-child(even) {
@@ -15,19 +18,24 @@
     border-bottom: 0;
   }
 
+  &:hover {
+    background-color: #e3f3ec;
+  }
+
   .id {
     flex: 1 1 50px;
   }
 
+  // Rendered as a button for keyboard access, but styled as plain text.
   .content {
     flex: 1 1 100%;
+    padding: 0;
+    color: inherit;
+    background: none;
+    text-align: left;
   }
 
   &.done .content {
     text-decoration: line-through;
-  }
-
-  &:hover {
-    background-color: #e3f3ec;
   }
 }

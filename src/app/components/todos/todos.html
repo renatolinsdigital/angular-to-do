@@ -1,0 +1,16 @@
+<ul class="todos">
+  @for (todo of todos(); track todo.id) {
+    <li class="todo" [class.done]="todo.isCompleted">
+      <span class="id">{{ todo.id }}</span>
+      <button
+        type="button"
+        class="content"
+        [attr.aria-pressed]="todo.isCompleted"
+        (click)="toggleComplete.emit(todo.id)"
+      >
+        {{ todo.content }}
+      </button>
+      <button type="button" class="delete" (click)="remove.emit(todo.id)">Delete</button>
+    </li>
+  }
+</ul>
