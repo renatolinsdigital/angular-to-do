@@ -1,41 +1,82 @@
+:host {
+  display: block;
+}
+
 .todos {
   list-style: none;
+  background-color: var(--color-paper);
+  border: var(--border);
+  box-shadow: var(--shadow-lg);
 }
 
 .todo {
   display: flex;
-  padding: 15px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
   align-items: center;
-  transition: all 0.2s ease;
+  padding-right: 16px;
+  border-bottom: var(--border);
+  transition: background-color 0.1s ease;
 
-  &:nth-child(even) {
-    background-color: #eee;
-  }
-
-  &:last-of-type {
+  &:last-child {
     border-bottom: 0;
   }
 
   &:hover {
-    background-color: #e3f3ec;
+    background-color: var(--color-hover);
   }
 
-  .id {
-    flex: 1 1 50px;
-  }
-
-  // Rendered as a button for keyboard access, but styled as plain text.
+  // The label wraps the checkbox and carries the row padding, so clicking
+  // anywhere on the row except the Delete button toggles the todo.
   .content {
-    flex: 1 1 100%;
-    padding: 0;
-    color: inherit;
-    background: none;
-    text-align: left;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+    padding: 16px;
+    cursor: pointer;
   }
 
-  &.done .content {
-    text-decoration: line-through;
+  .text {
+    overflow-wrap: anywhere;
   }
+
+  // appearance: none removes the browser's checkbox so we can draw a square one.
+  .toggle {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    appearance: none;
+    background-color: var(--color-paper);
+    border: var(--border);
+    cursor: pointer;
+
+    // When checked, fill the box and draw a tick with an inline SVG.
+    &:checked {
+      background: var(--color-ink)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12.5l5 5L20 6.5' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E")
+        center / 80% no-repeat;
+    }
+  }
+
+  .delete {
+    padding: 6px 10px;
+    font-size: 13px;
+    background-color: var(--color-danger);
+  }
+
+  &.done {
+    background-color: var(--color-done);
+
+    .text {
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+    }
+  }
+}
+
+.empty {
+  padding: 32px 16px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
 }

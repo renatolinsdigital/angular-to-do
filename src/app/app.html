@@ -1,6 +1,7 @@
 <div class="app">
-  <header>
+  <header class="header">
     <h1>To do List</h1>
+    <p class="tagline">Angular 22 · standalone components · signals</p>
   </header>
   <main>
     <app-todo-input (add)="add($event)" />
@@ -10,4 +11,16 @@
       (remove)="remove($event)"
     />
   </main>
+  <footer class="footer">
+    <p>
+      Developed by
+      <a
+        href="https://www.linkedin.com/in/renatolinsdigital"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Renato Lins</a
+      >
+    </p>
+    <p class="note">Developed for teaching purposes</p>
+  </footer>
 </div>

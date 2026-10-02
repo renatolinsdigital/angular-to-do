@@ -20,6 +20,17 @@ describe('App', () => {
     expect(todoTexts()).toEqual(['First to do', 'Second to do']);
   });
 
+  it('links the author name to LinkedIn in a new tab', () => {
+    const link = element.querySelector<HTMLAnchorElement>('.footer a')!;
+
+    expect(link.textContent?.trim()).toBe('Renato Lins');
+    expect(link.href).toBe('https://www.linkedin.com/in/renatolinsdigital');
+    expect(link.target).toBe('_blank');
+    expect(element.querySelector('.footer')?.textContent).toContain(
+      'Developed for teaching purposes',
+    );
+  });
+
   it('adds a todo submitted through the input', async () => {
     const input = element.querySelector('input')!;
     input.value = 'Buy milk';
@@ -29,11 +40,26 @@ describe('App', () => {
     await fixture.whenStable();
 
     expect(todoTexts()).toEqual(['First to do', 'Second to do', 'Buy milk']);
-    expect(todoItems()[2].querySelector('.id')?.textContent?.trim()).toBe('2');
   });
 
-  it('toggles a todo when its content is clicked', async () => {
-    todoItems()[0].querySelector<HTMLButtonElement>('.content')!.click();
+  it('marks a todo as done and back when its checkbox is clicked', async () => {
+    const checkbox = () => todoItems()[0].querySelector<HTMLInputElement>('.toggle')!;
+
+    checkbox().click();
+    await fixture.whenStable();
+
+    expect(todoItems()[0].classList).toContain('done');
+    expect(checkbox().checked).toBe(true);
+
+    checkbox().click();
+    await fixture.whenStable();
+
+    expect(todoItems()[0].classList).not.toContain('done');
+    expect(checkbox().checked).toBe(false);
+  });
+
+  it('toggles a todo when its text is clicked', async () => {
+    todoItems()[0].querySelector<HTMLElement>('.text')!.click();
     await fixture.whenStable();
 
     expect(todoItems()[0].classList).toContain('done');

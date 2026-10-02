@@ -1,4 +1,30 @@
+// Global styles apply to the whole page. Each component also has its own
+// .scss file whose rules only affect that component (see docs/styling.md).
+
+// Design tokens: every color, font, border and shadow in the app comes from
+// these variables, so changing a value here restyles the whole app.
+:root {
+  --color-ink: #111;
+  --color-paper: #fff;
+  --color-canvas: #f4efe1;
+  --color-grid: rgb(17 17 17 / 7%);
+  --color-primary: #ffd60a;
+  --color-danger: #ff5c5c;
+  --color-done: #8ee6b0;
+  --color-hover: #fff4b8;
+  --color-focus: #2f54eb;
+
+  --font-display: 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono:
+    ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --border: 3px solid var(--color-ink);
+  --shadow: 4px 4px 0 var(--color-ink);
+  --shadow-lg: 6px 6px 0 var(--color-ink);
+}
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   border: 0;
@@ -6,26 +32,53 @@
   vertical-align: baseline;
 }
 
-html,
 body {
-  font-family: sans-serif;
+  min-height: 100vh;
+  font-family: var(--font-mono);
   font-size: 16px;
-}
-
-h1 {
-  font-size: 24px;
-  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  // Graph paper: one gradient draws the horizontal lines, the other the vertical ones.
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 button {
-  color: white;
-  background-color: steelblue;
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 10px 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+  background-color: var(--color-primary);
+  border: var(--border);
+  box-shadow: var(--shadow);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
 
+  // The shadow is the button's "depth": it lifts on hover and presses flat on click.
   &:hover {
-    background-color: rgb(54, 107, 150);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
 }
